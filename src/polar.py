@@ -20,12 +20,12 @@ class Polar:
         # get specified polar data:
         try:
             coeff_polar = getattr(self,coeff)
-        except:
-            raise Exception("Error: argument 'coeff' invalid option of ['cl' 'cd' 'cdp' 'cm'].")
+        except AttributeError:
+            raise AttributeError("Error: argument 'coeff' set to invalid option '%s'.\nValid options: ['cl' 'cd' 'cdp' 'cm']." % coeff)
 
         # check alpha in polar range
         if curr_alpha < min(self.alpha) or curr_alpha > max(self.alpha):
-            raise Exception("Error: argument 'alpha' out of polar bounds.")
+            raise ValueError("Error: argument 'curr_alpha=%.2f' out of polar bounds." % curr_alpha)
 
         # find interpolation bounds
         n = len(self.alpha)-1
