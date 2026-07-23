@@ -1,11 +1,11 @@
 import csv
-from src.polar import polar
+from src.polar import Polar
 # [Input]
 #   string  name    [1,1] name of aerofoil
 #   string  path    [1,1] filepath to polar csv with headers: 'Alpha' 'Cl' 'Cd' 'Cdp' 'Cm'
 # [Output]
 #   class   polar   {6,1} name + values from csv for alpha cl cd cdp cm
-def load_polar(name: str, path: str) -> polar:
+def load_polar(name: str, path: str) -> Polar:
     alpha=[]
     cl=[]
     cd=[]
@@ -21,4 +21,4 @@ def load_polar(name: str, path: str) -> polar:
             cdp.append(float(r['Cdp']))
             cm.append(float(r['Cm']))
 
-    return polar(name,alpha,cl,cd,cdp,cm)
+    return Polar(name,alpha,cl,cd,cdp,cm)

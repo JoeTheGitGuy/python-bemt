@@ -5,14 +5,14 @@
 #   string  cd      [1,1] drag coeff polar
 #   string  cdp     [1,1] ? coeff polar
 #   string  cm      [1,1] moment coeff polar
-class polar:
+class Polar:
     def __init__(self,name:str,alpha:float,cl:float,cd:float,cdp:float,cm:float):
-        self.name = name;
-        self.alpha = alpha;
-        self.cl = cl;
-        self.cd = cd;
-        self.cdp = cdp;
-        self.cm = cm;
+        self.name = name
+        self.alpha = alpha
+        self.cl = cl
+        self.cd = cd
+        self.cdp = cdp
+        self.cm = cm
 
     # calculate CL via interpolation for given AoA
     def coeff_calc(self,coeff:str,curr_alpha:float):
@@ -33,12 +33,12 @@ class polar:
             if abs(self.alpha[i] - curr_alpha) < 0.00001:
                 return coeff_polar[i]
             elif (self.alpha[i] > curr_alpha):
-                lb_ind = i-1;
-                ub_ind = i;
+                lb_ind = i-1
+                ub_ind = i
                 break
 
         # interpolate CL
-        dalpha  = self.alpha[ub_ind]-self.alpha[lb_ind];
-        dcl     = coeff_polar[ub_ind]-coeff_polar[lb_ind];
+        dalpha  = self.alpha[ub_ind]-self.alpha[lb_ind]
+        dcl     = coeff_polar[ub_ind]-coeff_polar[lb_ind]
 
-        return coeff_polar[lb_ind] + (curr_alpha-self.alpha[lb_ind])*(dcl/dalpha);
+        return coeff_polar[lb_ind] + (curr_alpha-self.alpha[lb_ind])*(dcl/dalpha)
