@@ -6,7 +6,15 @@
 #   string  cdp     [1,1] ? coeff polar
 #   string  cm      [1,1] moment coeff polar
 class Polar:
-    def __init__(self,name:str,reynolds:float,ncrit:int,alpha:float,cl:float,cd:float,cdp:float,cm:float):
+    def __init__(self,
+                 name:      str,
+                 reynolds:  float,
+                 ncrit:     int,
+                 alpha:     list[float],
+                 cl:        list[float],
+                 cd:        list[float],
+                 cdp:       list[float],
+                 cm:        list[float]):
         """Owns aerofoil data for alpha vs force/moment coefficient lookup/interpolation"""
         self.name = name
         self.reynolds = reynolds
