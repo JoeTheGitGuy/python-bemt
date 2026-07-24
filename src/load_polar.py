@@ -6,6 +6,7 @@ from src.polar import Polar
 # [Output]
 #   class   polar   {6,1} name + values from csv for alpha cl cd cdp cm
 def load_polar(name: str, path: str) -> Polar:
+    """Loads a csv of an alpha vs force/moment coefficients into a Polar class"""
     alpha=[]
     cl=[]
     cd=[]
