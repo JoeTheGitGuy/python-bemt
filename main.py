@@ -9,7 +9,7 @@ def main():
 
     aero1 = Aerofoil("2412_il",naca2412_il)
     print(aero1.name,":")
-    polar = aero1.get_polar(100000)
+    polar = aero1.get_polar(500000)
     print(polar.coeff_calc('cl',11.001))
 
     return 0
