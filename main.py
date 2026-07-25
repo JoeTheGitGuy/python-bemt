@@ -12,4 +12,7 @@ def main():
     polar = aero1.get_polar(500000)
     print(polar.coeff_calc('cl',11.001))
     return 0
-main()
+
+# if someone wants to import this for some reason, do not run on import.
+if __name__ == '__main__':
+    main()
