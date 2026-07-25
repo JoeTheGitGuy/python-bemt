@@ -14,22 +14,16 @@ def load_polar(path: str) -> Polar:
     # open and parse NACA polar data
     with open(path) as polar_csv:
         # extract header info
-        header_data = metadata(csv.reader(polar_csv))
-        header = header_data[0]
-        header_end_line = header_data[1]
+        header = metadata(csv.reader(polar_csv))
 
         name = header["Airfoil"]
         reynolds = float(header["Reynolds number"])
         ncrit = int(header["Ncrit"])
 
         # extract data info
+        # reader obj 'polar_csv' has moved over metadata already
         polar_reader = csv.DictReader(polar_csv, delimiter=",")
-        curr_line = 0
         for r in polar_reader:
-            curr_line = curr_line+1
-            # skip until header end
-            if curr_line <= header_end_line:
-                continue
             alpha.append(float(r['Alpha']))
             cl.append(float(r['Cl']))
             cd.append(float(r['Cd']))
@@ -40,16 +34,15 @@ def load_polar(path: str) -> Polar:
 
 def metadata(file:csv.Reader):
     curr_line = 0
-    header_end_line = 1
     header = {}    
     for r in file:
         curr_line = curr_line+1
         # skip special case first line
         if curr_line == 1:
             continue
-        # mark end of header
+        # check for empty line
+        # (expected to be the break between header & dataset)
         if not r:
-            header_end_line = curr_line
             break
         # require header to be name-value
         if len(r) != 2:
@@ -57,5 +50,4 @@ def metadata(file:csv.Reader):
 
         key, value = r[:2]
         header[key] = value
-        curr_line = curr_line+1
-    return header,header_end_line
+    return header
