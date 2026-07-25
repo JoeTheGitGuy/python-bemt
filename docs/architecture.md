@@ -17,7 +17,7 @@ src/
     load_polar.py
     polar.py
     aerofoil.py
-    blade.py
+    blade_element.py
     rotor.py
     bem_solver.py
 tests/
@@ -32,19 +32,27 @@ load_polar.py
 polar.py
     Owns polar data for coefficients vs. alpha for specific Reynolds
     numbers and aerofoil geometries.
+    Owns method for interpolating between reynolds numbers.
+    Owns (interface to ??) method for interpolating coefficients.
 aerofoil.py
-    Owns characteristic 2D aerofoil geometry, references polar
-    class.
+    Owns characteristic 2D aerofoil geometry.
+    References Polar class.
 blade_element.py
-    Represents a geometrically uniform, thin 3D segment of a rotor,
-    owning radial length, and referencing the aerofoil class.
+    Represents a geometrically uniform, thin 3D segment of a rotor.
+    Owns radial length, position, twist.
+    References the Aerofoil class.
 rotor.py
-    A complete wing geometry owning how many radial segments it is
-    composed of, their locations, twist, and referencing which
-    blade elements they would use.
+    Represent complete wing geometry.
+    Owns interface to bem_solver and methods for effects spanning
+    several elements (eg. total lift, tip loss adjustment)
+    References BladeElement class.
 bem_solver.py
     A numerical solver that resolves force and energy for a rotor
     in a given environment.
+config.txt (?)
+    Owns initial conditions for environment.
+main.py
+    Owns interface between config, bem_solver, and rotor.
 
 # Assumptions
 Single Reynolds number.
@@ -52,5 +60,7 @@ Linear interpolation between AoA datasets.
 
 # Future Work
 Multiple Reynolds numbers.
+Interpolations between Reynolds numbers.
 Tip loss.
 Automatic power minimisation via selecting aerofoils.
+Transonic considerations?
