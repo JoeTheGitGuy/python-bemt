@@ -30,22 +30,24 @@ docs/
 load_polar.py
     Interfaces with data/* files to generate polar.py instances.
 polar.py
+    Represents an aerodynamic dataset.
     Owns polar data for coefficients vs. alpha for specific Reynolds
     numbers and aerofoil geometries.
     Owns method for interpolating between reynolds numbers.
     Owns (interface to ??) method for interpolating coefficients.
 aerofoil.py
-    Owns characteristic 2D aerofoil geometry.
-    References Polar class.
+    Represents 2D aerofoil geometry
+    Owns linking to relevant datasets via reference to Polar class.
 blade_element.py
     Represents a geometrically uniform, thin 3D segment of a rotor.
     Owns radial length, position, twist.
-    References the Aerofoil class.
+    References the Aerofoil class for aerodynamic datasets.
 rotor.py
     Represent complete wing geometry.
     Owns interface to bem_solver and methods for effects spanning
     several elements (eg. total lift, tip loss adjustment)
-    References BladeElement class.
+    References BladeElement class to consolidate a system of elements
+    into a single object.
 bem_solver.py
     A numerical solver that resolves force and energy for a rotor
     in a given environment.
