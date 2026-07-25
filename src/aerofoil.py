@@ -7,7 +7,11 @@ class Aerofoil:
         self._polars = polars
 
     def get_polar(self,re) -> Polar:
-        return self._polars[0]
-        #re_known = []
-        #for i in range(len(self._polars)):
-        #    re_known[i] = self._polars[i].reynolds 
+        # get all list of polars' reynolds numbers
+        re_sets = [obj.reynolds for obj in self._polars]
+        if re not in re_sets:
+            raise ValueError(f"No data for Reynolds number: {re}")
+        
+        # index polar list by reynold number match & return
+        re_polar = self._polars[re_sets == re]
+        return re_polar

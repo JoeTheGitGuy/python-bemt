@@ -25,6 +25,7 @@ class Polar:
         self.cdp = cdp
         self.cm = cm
 
+
     def coeff_calc(self,coeff:str,curr_alpha:float):
         """calculate CL via interpolation for given alpha"""
         # get specified polar data:

@@ -19,8 +19,8 @@ def load_polar(path: str) -> Polar:
         header_end_line = header_data[1]
 
         name = header["Airfoil"]
-        reynolds = header["Reynolds number"]
-        ncrit = header["Ncrit"]
+        reynolds = float(header["Reynolds number"])
+        ncrit = int(header["Ncrit"])
 
         # extract data info
         polar_reader = csv.DictReader(polar_csv, delimiter=",")
