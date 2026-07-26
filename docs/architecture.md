@@ -44,8 +44,8 @@ blade_element.py
     References the Aerofoil class for aerodynamic datasets.
 rotor.py
     Represent complete wing geometry.
-    Owns interface to bem_solver and methods for effects spanning
-    several elements (eg. total lift, tip loss adjustment)
+    Owns interface to bem_solver and multi-element interactions
+    (eg. total lift, tip loss adjustment).
     References BladeElement class to consolidate a system of elements
     into a single object.
 bem_solver.py
