@@ -1,3 +1,11 @@
+'''
+Represents an aerodynamic dataset.
+Owns polar data for coefficients vs. alpha for specific Reynolds
+numbers and aerofoil geometries.
+Owns method for interpolating between reynolds numbers.
+Owns (interface to ??) method for interpolating coefficients.
+'''
+
 # [Input]
 #   string  name    [1,1] name of aerofoil
 #   string  alpha   [1,1] angle of attack polar

@@ -1,3 +1,9 @@
+'''
+Represents a geometrically uniform, thin 3D segment of a rotor.
+Owns radial length, position, twist.
+References the Aerofoil class for aerodynamic datasets.
+'''
+
 from src.aerofoil import Aerofoil
 
 class BladeElement:

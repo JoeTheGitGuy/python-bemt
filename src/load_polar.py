@@ -1,3 +1,7 @@
+'''
+Interfaces with data/* files to generate polar.py instances.
+'''
+
 import csv
 from src.polar import Polar
 # [Input]

@@ -1,3 +1,8 @@
+'''
+Represents 2D aerofoil geometry
+Owns linking to relevant datasets via reference to Polar class.
+'''
+
 from src.polar import Polar
 
 class Aerofoil:
