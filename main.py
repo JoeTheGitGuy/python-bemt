@@ -1,5 +1,6 @@
 from src.load_polar import load_polar
 from src.aerofoil import Aerofoil
+from src.build_blade_profile import build_blade_profile
 
 def main():
 
@@ -7,20 +8,27 @@ def main():
                    load_polar("data/xf-naca2412-il-100000-n5.csv"),
                    load_polar("data/xf-naca2412-il-500000-n5.csv")]
 
-    aero1 = Aerofoil("2412_il",naca2412_il)
+    aerofoil_2412_il = Aerofoil("2412_il",naca2412_il)
+    blade = build_blade_profile([[100,aerofoil_2412_il]],10,1,10,1,0.8)
 
-    if aero1.get_polar(500000).reynolds == 500000:
+    for i in blade:
+        print("chord ", i.chord)
+        print("dr ", i.dr)
+        print("r ", i.r)
+        print("twist ", i.twist)
+
+    if aerofoil_2412_il.get_polar(500000).reynolds == 500000:
         print("Polar for Re=500000 fetches correctly!")
-    if aero1.get_polar(100000).reynolds == 100000:
-            print("Polar for Re=100000 fetches correctly!")
-    if aero1.get_polar(50000).reynolds == 50000:
-                print("Polar for Re=100000 fetches correctly!")
+    if aerofoil_2412_il.get_polar(100000).reynolds == 100000:
+        print("Polar for Re=100000 fetches correctly!")
+    if aerofoil_2412_il.get_polar(50000).reynolds == 50000:
+        print("Polar for Re=100000 fetches correctly!")
 
-    print(aero1.name,":")
+    print(aerofoil_2412_il.name,":")
 
     # test suite
     test_tolerance = 0.001
-    polar = aero1.get_polar(500000)
+    polar = aerofoil_2412_il.get_polar(500000)
     if polar.coeff_calc('cl',11) - 1.3005 <= test_tolerance:
         print("Polar correctly looked up known datapoint!")
     else:
