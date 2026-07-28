@@ -1,12 +1,12 @@
 from src.aerofoil import Aerofoil
 from src.blade_element import BladeElement
 
-def build_blade_profile(aerofoil_brkpts:list[float,Aerofoil],n_elements:int,L:float,total_twist:float,root_chord:float,taper_ratio:float) -> list[BladeElement]:
+def build_blade_elements(aerofoil_brkpts:list[float,Aerofoil],n_elements:int,L:float,total_twist:float,root_chord:float,taper_ratio:float) -> list[BladeElement]:
     # code that generates a bunch of BladeElements and assigns them local twist, radial position (curr_r), local chord (based on linear taper)
     # unsure on how to implement being able to change aerofoil across the radius... accept list of [radial position end-points, NACA name] pairs? Would mean no need for total radial length as it's inferred from this value-name input
 
     # initialise
-    blade_profile = []
+    blade_elements = []
     brkpts_idx = int(0)
     num_brkpts = len(aerofoil_brkpts[:][0])
 
@@ -24,11 +24,11 @@ def build_blade_profile(aerofoil_brkpts:list[float,Aerofoil],n_elements:int,L:fl
             brkpts_idx = brkpts_idx+1
         aerofoil = aerofoil_brkpts[brkpts_idx][1]
 
-        blade_profile.append(BladeElement(aerofoil,curr_r,dr,curr_theta,curr_chord))
+        blade_elements.append(BladeElement(aerofoil,curr_r,dr,curr_theta,curr_chord))
 
         # increment properties
         curr_r      = curr_r + dr
         curr_theta  = curr_theta - dtheta
         curr_chord  = curr_chord + dchord
 
-    return blade_profile
+    return blade_elements

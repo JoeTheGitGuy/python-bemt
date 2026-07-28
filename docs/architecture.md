@@ -33,11 +33,11 @@ polar.py
     Represents an aerodynamic dataset.
     Owns polar data for coefficients vs. alpha for specific Reynolds
     numbers and aerofoil geometries.
-    Owns method for interpolating between reynolds numbers.
     Owns (interface to ??) method for interpolating coefficients.
 aerofoil.py
     Represents 2D aerofoil geometry
     Owns linking to relevant datasets via reference to Polar class.
+    Owns interpolation between polar datasets.
 blade_element.py
     Represents a geometrically uniform, thin 3D segment of a rotor.
     Owns radial length, position, twist.
