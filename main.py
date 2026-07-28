@@ -1,3 +1,4 @@
+from src.environment import Environment
 from src.load_polar import load_polar
 from src.aerofoil import Aerofoil
 from src.build_blade_elements import build_blade_elements
@@ -7,6 +8,8 @@ def main():
 
     test = False
 
+    #environment = Environment(9.81,1.225,1.79*(10**-5),343,50,20)
+
     naca2412_il = [load_polar("data/xf-naca2412-il-50000-n5.csv"),
                    load_polar("data/xf-naca2412-il-100000-n5.csv"),
                    load_polar("data/xf-naca2412-il-500000-n5.csv")]
@@ -14,6 +17,8 @@ def main():
     aerofoil_2412_il = Aerofoil("2412_il",naca2412_il)
     blade = build_blade_elements([[100,aerofoil_2412_il]],10,1,10,1,0.8)
     rotor = Rotor(4,10,3,0.15,blade)
+
+    #solver = bem_solver(enviroment,blade)
 
     if test == True:
         # blade element factory testing
